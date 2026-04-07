@@ -1,0 +1,18 @@
+# Python virtual environment
+.venv/
+env/
+venv/
+
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Data files
+data/*.csv
+
+# Model files
+.DS_Store
+Thumbs.db
