@@ -80,17 +80,19 @@ def apply_feature_binning(df, strategy='ordinal'):
 
     if strategy == 'ordinal':
         # labels=False returns 0, 1, 2, 3...
-        df['age_ordinal'] = pd.cut(df['age'], bins=age_bins, labels=False)
+        # df['age_ordinal'] = pd.cut(df['age'], bins=age_bins, labels=False)
         df['delay_ordinal'] = pd.cut(df['delay_time'], bins=delay_bins, labels=False)
     else:
         # returns string labels
-        df['age_group'] = pd.cut(df['age'], bins=age_bins, labels=age_labels)
+        # df['age_group'] = pd.cut(df['age'], bins=age_bins, labels=age_labels)
         df['delay_group'] = pd.cut(df['delay_time'], bins=delay_bins, labels=delay_labels)
 
     # Handle any potential NaNs from out-of-range values
-    cols_to_fix = [c for c in ['age_ordinal', 'delay_ordinal'] if c in df.columns]
+    # cols_to_fix = [c for c in ['age_ordinal', 'delay_ordinal'] if c in df.columns]
+    cols_to_fix = [c for c in ['delay_ordinal'] if c in df.columns]
     df[cols_to_fix] = df[cols_to_fix].fillna(-1).astype(int)
-    df.drop(columns=['age', 'delay_time'], inplace=True, errors='ignore')
+    # df.drop(columns=['age', 'delay_time'], inplace=True, errors='ignore')
+    df.drop(columns=['delay_time'], inplace=True, errors='ignore')
     
     return df
 

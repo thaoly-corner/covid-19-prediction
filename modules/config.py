@@ -9,8 +9,8 @@ CATEGORICAL_FEATURES = [
 
 TARGET_COLUMN = 'is_dead'
 
-NUMERICAL_FEATURES = ['age', 'delay_time']
-ORDINAL_FEATURES = ['age_ordinal', 'delay_ordinal']
+NUMERICAL_FEATURES = ['age']
+ORDINAL_FEATURES = ['delay_ordinal']
 
 DATE_COLUMNS = ['entered_date', 'date_symptoms', 'date_died']
 

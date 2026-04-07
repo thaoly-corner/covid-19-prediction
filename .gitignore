@@ -14,5 +14,6 @@ __pycache__/
 data/*.csv
 
 # Model files
+models/*.pkl
 .DS_Store
 Thumbs.db
