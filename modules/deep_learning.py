@@ -86,9 +86,9 @@ def evaluate_dl_model(X_train, y_train, X_test, y_test, preprocessor, undersampl
     # BIỂU DIỄN KẾT QUẢ THEO FORMAT CHUẨN
     # ==========================================
     print(f"\n--- {name.upper()} ({dataset_type.upper()} DATA) RESULTS ---")
-    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.2f}")
-    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.2f}")
-    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.4f}")
+    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.4f}")
+    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.4f}")
 
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred, target_names=['Survived (0)', 'Deceased (1)']))
@@ -216,9 +216,9 @@ def evaluate_resnet_model(X_train, y_train, X_test, y_test, preprocessor, unders
     # BIỂU DIỄN KẾT QUẢ THEO FORMAT CHUẨN
     # ==========================================
     print(f"\n--- {name.upper()} ({dataset_type.upper()} DATA) RESULTS ---")
-    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.2f}")
-    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.2f}")
-    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.4f}")
+    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.4f}")
+    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.4f}")
 
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred, target_names=['Survived (0)', 'Deceased (1)']))
@@ -307,9 +307,9 @@ def evaluate_tabnet_model(X_train, y_train, X_test, y_test, preprocessor, unders
     # BIỂU DIỄN KẾT QUẢ THEO FORMAT CHUẨN
     # ==========================================
     print(f"\n--- {name.upper()} ({dataset_type.upper()} DATA) RESULTS ---")
-    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.2f}")
-    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.2f}")
-    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+    print(f"Recall (Deceased): {recall_score(y_test, y_pred):.4f}")
+    print(f"F1 Score (Deceased): {f1_score(y_test, y_pred):.4f}")
+    print(f"Overall Accuracy: {accuracy_score(y_test, y_pred):.4f}")
 
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred, target_names=['Survived (0)', 'Deceased (1)']))
