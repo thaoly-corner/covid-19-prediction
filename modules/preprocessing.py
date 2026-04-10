@@ -44,7 +44,6 @@ def clean_data(df):
     # Exclude columns that are already formatted or are numerical
     cols_to_map = [c for c in existing_cats if c not in ['covid_res']]
     df[cols_to_map] = df[cols_to_map].replace({1: 1, 2: 0})
-    
     return df
 
 def convert_cat(df):

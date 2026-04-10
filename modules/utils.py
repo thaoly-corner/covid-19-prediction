@@ -30,8 +30,4 @@ def standardize_dates(df, date_cols):
         if col in df.columns:
             # 1. Clean whitespace and replace '/' with '-'
             df[col] = df[col].astype(str).str.strip().str.replace('/', '-')
-            
-            # 2. Optional: Ensure YYYY-MM-DD consistency 
-            # (If the raw data is DD-MM-YYYY, we'd need more logic, 
-            # but for this Mexico dataset, it's usually already YYYY-MM-DD or DD/MM/YYYY)
     return df

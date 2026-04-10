@@ -4,6 +4,7 @@ import pandas as pd
 import scipy.stats as ss
 from modules.config import CATEGORICAL_FEATURES, NUMERICAL_FEATURES
 import numpy as np
+from sklearn.feature_selection import mutual_info_classif
 
 def _apply_mapping(df, column, hue, mapping):
     """Helper function to apply categorical mapping safely."""
@@ -255,41 +256,60 @@ def plot_categorical_heatmap(df, categorical_cols, title="Categorical Correlatio
             print(f" {feat1} & {feat2} : {score:.3f}")
     print("-" * 60 + "\n")
 
-def plot_categorical_importance(df, categorical_cols, target='is_dead', title="Categorical Feature Importance", palette='magma'):
+
+def plot_mi_importance(X, y, discrete_features=True, top_k=20, random_state=42):
     """
-    Plots the importance of categorical features based on Cramér's V with respect to the target variable.
-    """
-    # 1. Calculate importance scores for each feature
-    importance_scores = []
-    cols_to_check = [c for c in categorical_cols if c in df.columns and c != target]
+    Calculates Mutual Information scores and visualizes the results in a bar chart."""
     
-    for col in cols_to_check:
-        score = cramers_v(df[col], df[target])
-        importance_scores.append({'Feature': col.replace('_', ' ').title(), 'Score': score})
-        
-    # 2. Create DataFrame and sort from high to low
-    importance_df = pd.DataFrame(importance_scores).sort_values(by='Score', ascending=False)
+    # 1. Calculate Mutual Information scores
+    # We use the discrete_features parameter as specified by the user
+    mi_scores = mutual_info_classif(
+        X, y, 
+        discrete_features=discrete_features, 
+        random_state=random_state
+    )
     
-    # 3. Plot bar chart
-    plt.figure(figsize=(10, 8))
-    ax = sns.barplot(x='Score', y='Feature', data=importance_df, palette=palette)
+    # 2. Organize results into a DataFrame
+    mi_df = pd.DataFrame({
+        'feature': X.columns,
+        'mi_score': mi_scores
+    }).sort_values('mi_score', ascending=False).reset_index(drop=True)
     
-    # 4. Add value labels on each bar
+    # 3. Prepare data for plotting
+    plot_data = mi_df.head(top_k)
+    
+    # 4. Visualization Setup
+    plt.figure(figsize=(10, 6 + (len(plot_data) * 0.25)))
+    sns.set_style("whitegrid")
+    
+    # Create the horizontal bar plot
+    ax = sns.barplot(
+        x='mi_score', 
+        y='feature', 
+        data=plot_data, 
+        palette='viridis',
+        hue='feature',
+        legend=False
+    )
+    
+    # Add text annotations (MI score values) to the end of each bar
+    max_score = plot_data['mi_score'].max()
     for p in ax.patches:
         width = p.get_width()
-        ax.text(width + 0.01, p.get_y() + p.get_height()/2, 
-                f'{width:.3f}', ha='left', va='center', fontsize=11, fontweight='bold')
-        
-    plt.title(title, fontsize=16, fontweight='bold', pad=20)
-    plt.xlabel(f"Importance Score (Cramér's V vs {target})", fontsize=12)
-    plt.ylabel('')
+        ax.text(
+            width + (max_score * 0.01), 
+            p.get_y() + p.get_height() / 2, 
+            f'{width:.4f}', 
+            va='center',
+            fontsize=10
+        )
+
+    # Formatting labels and title
+    plt.title("Feature Importance via Mutual Information", fontsize=14, fontweight='bold', pad=20)
+    plt.xlabel("Mutual Information Score", fontsize=12)
+    plt.ylabel("Features", fontsize=12)
     
-    plt.xlim(0, importance_df['Score'].max() * 1.2)
-    sns.despine()
     plt.tight_layout()
     plt.show()
-
-    # Print the importance ranking in a clear table format
-    print(f"\n[FEATURE IMPORTANCE RANKING vs `{target.upper()}`]")
-    print(importance_df.to_string(index=False))
-    print("-" * 60 + "\n")
+    
+    return mi_df
