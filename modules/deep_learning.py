@@ -10,7 +10,6 @@ from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Input, Dense, BatchNormalization, Dropout, Add, Activation
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 import torch
-from pytorch_tabnet.tab_model import TabNetClassifier
 from sklearn.model_selection import train_test_split
 
 def evaluate_dl_model(X_train, y_train, X_test, y_test, undersampler, dataset_type="SMOTEd"):
