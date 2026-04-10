@@ -45,17 +45,6 @@ def generate_balanced_datasets(X_train_raw, y_train, preprocessor, cat_indices):
     print(f"SMOTE-NC took {time.time() - start_time:.2f} seconds.")
     datasets['SMOTE-NC (1:1 Ratio)'] = (X_smote_proc, y_smote)
 
-    # --- 3. SMOTE-NC (1:5 Ratio) ---
-    print("\n--- BALANCING DATA WITH SMOTE-NC (1:5) ---")
-    smotenc_15 = SMOTENC(categorical_features=cat_indices, random_state=42, sampling_strategy=0.2)
-    start_time = time.time()
-    X_smote_15, y_smote_15 = smotenc_15.fit_resample(X_train_raw, y_train)
-    X_smote_15_proc = preprocessor.transform(X_smote_15)
-    if hasattr(X_smote_15_proc, "toarray"): X_smote_15_proc = X_smote_15_proc.toarray()
-    print(f"Class distribution AFTER SMOTE (1:5):  {Counter(y_smote_15)}")
-    print(f"SMOTE-NC (1:5) took {time.time() - start_time:.2f} seconds.")
-    datasets['SMOTE-NC (1:5 Ratio)'] = (X_smote_15_proc, y_smote_15)
-
     return datasets
 
 def get_model_grids():
