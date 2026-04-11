@@ -133,11 +133,7 @@ def train_and_evaluate_pipeline(X_train_bal, y_train_bal, X_test_proc, y_test, d
             n_jobs=-1
         )
     }
-
-    # 3. Gộp toàn bộ mô hình (Đơn lẻ + Kết hợp)
     all_models = {**base_individual_models, **ensembles}
-
-    # 4. Đánh giá tất cả
     print(f"\n>>> Evaluating on {dataset_name} <<<")
     results = evaluate_model(
         all_models, 
