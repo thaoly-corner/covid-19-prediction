@@ -73,7 +73,7 @@ def apply_feature_binning(df, strategy='ordinal'):
     age_labels = ['Child', 'Teenager', 'Young Adult', 'Middle-aged', 'Senior']
     
     # 2. Define Delay Bins: 0, 1-7, 8-10, 11-15, 15+
-    # Adjusting based on your snippet logic
+    # Adjusting based on the snippet logic
     delay_bins = [-np.inf, 0, 7, 10, 15, np.inf]
     delay_labels = ['Short/No Delay', 'Medium', 'Long', 'Very Long', 'Extreme']
 
