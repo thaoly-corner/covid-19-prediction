@@ -1,24 +1,20 @@
 # COVID-19 Patient Precondition & Mortality Analysis 
 
-A high-performance data science pipeline designed to analyze patient medical histories and predict COVID-19 mortality risk (`is_dead`) using Hybrid Machine Learning and Deep Learning architectures.
-## Dataset Description
-The dataset contains clinical records of patients, including their demographic data and pre-existing medical conditions.
+A high-performance data science pipeline designed to analyze patient medical histories and predict COVID-19 mortality risk (`is_dead`) using Machine Learning and Deep Learning architectures.
+##  Dataset Description
+* **Source:** [Kaggle COVID-19 patient pre-condition dataset](https://www.kaggle.com/datasets/tanmoyx/covid19-patient-precondition-dataset/data)
+* **Samples:** 500k+ observations.
+* **Task:** Binary Classification
 
-### Metadata & Features
-| Feature | Description | Values |
-| :--- | :--- | :--- |
-| **sex** | Gender of the patient | 1: Female, 2: Male |
-| **patient_type** | Care setting | 1: Not hospitalized, 2: Hospitalized |
-| **intubed** | Used ventilator support | 1: Yes, 2: No, 97-99: Missing |
-| **pneumonia** | Air sacs inflammation | 1: Yes, 2: No, 97-99: Missing |
-| **age** | Age of the patient | Numerical |
-| **pregnancy** | Whether the patient is pregnant | 1: Yes, 2: No, 97-99: Missing |
-| **pre-existing conditions** | Diabetes, COPD, Asthma, Inmsupr, Hypertension, Cardiovascular, Obesity, Renal Chronic | 1: Yes, 2: No, 97-99: Missing |
-| **tobacco** | Is a tobacco user | 1: Yes, 2: No, 97-99: Missing |
-| **contact_other_covid**| Contacted another COVID-19 patient | 1: Yes, 2: No, 97-99: Missing |
-| **icu** | Admitted to Intensive Care Unit | 1: Yes, 2: No, 97-99: Missing |
-| **covid_res** | COVID-19 test result | 1: Positive, 2: Negative, 3: Awaiting |
-| **is_dead (Target)** | Generated from `date_died` | 0: Recovered, 1: Mortality |
+### Features Breakdown
+| Category | Features |
+| :--- | :--- |
+| **Demographics** | `age`, `sex` (1: Female, 2: Male) |
+| **Pre-existing Conditions** | `diabetes`, `copd`, `asthma`, `inmsupr`, `hypertension`, `cardiovascular`, `obesity`, `renal_chronic`, `tobacco`, `other_disease` |
+| **Clinical Information** | `patient_type`, `icu`, `intubed`, `pneumonia`, `covid_res` |
+| **Temporal Data** | `entry_date`, `date_symptoms`, `date_died` |
+
+* **Target:** `is_dead` (Derived from `date_died`: 0 for recovery, 1 for mortality).
 
 ## ⚙️ Pipeline Overview
 1. **Data Ingestion:** Automated fetching via `kagglehub` in `modules/data_loader.py`.
@@ -30,20 +26,20 @@ The dataset contains clinical records of patients, including their demographic d
 
 ## Tech Stack
 ### Modeling & Deep Learning
-* **Deep Learning:** `Keras`, `TensorFlow`, `PyTorch`, `PyTorch-TabNet` (ResNet-style DL architectures)
-* **Gradient Boosting:** `XGBoost`, `LightGBM`, `CatBoost`
-* **Explainability:** `SHAP` 
+* **Deep Learning:** `Keras`, `TensorFlow`, `PyTorch`, `PyTorch-TabNet`
+* **Gradient Boosting:** `XGBoost`, `LightGBM`
+* **Explainability:** `SHAP` (Shapley Additive Explanations)
 * **Machine Learning:** `Scikit-learn`, `SciPy`
 
 ### Data Science & Processing
 * **Data Manipulation:** `Pandas`, `NumPy`
-* **Imbalanced Data:** `Imbalanced-learn` (SMOTE, RandomUnderSampler)
+* **Imbalanced Data:** `Imbalanced-learn` (Applied **SMOTENN** and **RandomUnderSampler**)
 * **Data Ingestion:** `Kagglehub` (Automated fetching)
 * **Utilities:** `Tqdm`, `Joblib`
 
 ### Visualization
-* **Static & Interactive:** `Matplotlib`, `Seaborn`, `Plotly`
-
+* **Static & Interactive:** `Matplotlib`, `Seaborn`
+* 
 ## Project Structure
 ```text
 ├── modules/            # Fully decoupled pipeline modules
