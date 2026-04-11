@@ -1,6 +1,6 @@
 # COVID-19 Patient Precondition & Mortality Analysis 
 
-A high-performance data science pipeline designed to analyze patient medical histories and predict COVID-19 mortality risk (`is_dead`) using Machine Learning and Deep Learning architectures.
+A data science pipeline designed to analyze patient medical histories and predict COVID-19 mortality risk (`is_dead`) using Machine Learning and Deep Learning architectures.
 ##  Dataset Description
 * **Source:** [Kaggle COVID-19 patient pre-condition dataset](https://www.kaggle.com/datasets/tanmoyx/covid19-patient-precondition-dataset/data)
 * **Samples:** 500k+ observations.
