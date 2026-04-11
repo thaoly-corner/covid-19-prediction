@@ -16,7 +16,7 @@ A high-performance data science pipeline designed to analyze patient medical his
 
 * **Target:** `is_dead` (Derived from `date_died`: 0 for recovery, 1 for mortality).
 
-## ⚙️ Pipeline Overview
+## Pipeline Overview
 1. **Data Ingestion:** Automated fetching via `kagglehub` in `modules/data_loader.py`.
 2. **Preprocessing:** Target engineering (`is_dead` creation), handling missing codes (97, 98, 99), and feature binning.
 3. **Handling Imbalance:** Comparative analysis was performed using SMOTENC (over-sampling) and RandomUnderSampler (under-sampling) strategies to optimize model performance."
