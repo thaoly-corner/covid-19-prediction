@@ -39,7 +39,7 @@ A high-performance data science pipeline designed to analyze patient medical his
 
 ### Visualization
 * **Static & Interactive:** `Matplotlib`, `Seaborn`
-* 
+  
 ## Project Structure
 ```text
 ├── modules/            # Fully decoupled pipeline modules
