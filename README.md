@@ -26,14 +26,14 @@ A data science pipeline designed to analyze patient medical histories and predic
 
 ## Tech Stack
 ### Modeling & Deep Learning
-* **Deep Learning:** `Keras`, `TensorFlow`, `PyTorch`, `PyTorch-TabNet`
+* **Deep Learning:** `Keras`, `TensorFlow`, `PyTorch`
 * **Gradient Boosting:** `XGBoost`, `LightGBM`
 * **Explainability:** `SHAP` (Shapley Additive Explanations)
 * **Machine Learning:** `Scikit-learn`, `SciPy`
 
 ### Data Science & Processing
 * **Data Manipulation:** `Pandas`, `NumPy`
-* **Imbalanced Data:** `Imbalanced-learn` (Applied **SMOTENN** and **RandomUnderSampler**)
+* **Imbalanced Data:** `Imbalanced-learn` (Applied **SMOTENC** and **RandomUnderSampler**)
 * **Data Ingestion:** `Kagglehub` (Automated fetching)
 * **Utilities:** `Tqdm`, `Joblib`
 
@@ -48,7 +48,7 @@ A data science pipeline designed to analyze patient medical histories and predic
 │   ├── preprocessing.py# Data cleaning
 │   ├── eda.py          # Distribution analysis & Correlation heatmaps
 │   ├── models.py       # ML Pipeline (GBDTs, Training & Evaluation)
-│   ├── deep_learning.py# Advanced DL models (ResNet, TabNet, Keras)
+│   ├── deep_learning.py# Advanced DL models (ResNet, Keras)
 │   └── utils.py        
 ├── main.ipynb          # End-to-end execution notebook 
 ├── requirements.txt    # List of dependencies
